@@ -4,7 +4,5 @@
 /usr/sbin/service memcached start
 
 # set up storage
-su swift /swift/bin/remakerings
-su swift -c "/usr/local/bin/swift-init main start"
-su swift -c "/usr/local/bin/swift-init rest start"
+su swift -c "/usr/local/bin/swift-init start account-server account-auditor, account-reaper, account-replicator"
 /usr/local/bin/supervisord -n -c /etc/supervisord.conf

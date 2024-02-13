@@ -1,0 +1,15 @@
+## Containerized Swift
+
+Hello and welcome, this repo is based off the work from https://github.com/NVIDIA/docker-swift
+
+The goal of this repo is to allow for PACO roles to be ran and operated out of each container, it is up to the operator to create and deploy the configuration files.   Configuration files, Storage Directories, logging are all bind dir to the containers.
+
+To deploy:
+
+create_local.sh - Create Swift user and group with UID/GID 1111 mapping, create and change ownership of local directories for Swift use.
+
+create_docker.sh - Build and Run PACO containers (will add switches to break out PACO roles)
+
+
+
+

@@ -38,16 +38,18 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 
-COPY ./misc/rsyncd.conf /etc/
+#COPY ./misc/rsyncd.conf /etc/
 COPY ./bin /swift/bin
-COPY ./rsyslog.d/10-swift.conf /etc/rsyslog.d/10-swift.conf
+#COPY ./rsyslog.d/10-swift.conf /etc/rsyslog.d/10-swift.conf
 COPY ./misc/supervisord.conf /etc/supervisord.conf
 
 RUN	mkdir /var/log/supervisor/ && \
     # create swift user and group
-    /usr/sbin/useradd -U swift && \
-    sed -i 's/SLEEP_BETWEEN_AUDITS = 30/SLEEP_BETWEEN_AUDITS = 86400/' /usr/local/src/swift/swift/obj/auditor.py 
+	sudo groupadd -g 1111 swift & \
+	sudo useradd -u 1111 -g 1111 swift & 
+#    /usr/sbin/useradd -U swift && \
+#    sed -i 's/SLEEP_BETWEEN_AUDITS = 30/SLEEP_BETWEEN_AUDITS = 86400/' /usr/local/src/swift/swift/obj/auditor.py 
 
 EXPOSE 8080
-CMD ["/bin/bash", "/swift/bin/launch.sh"]
+CMD ["/bin/bash", "/swift/bin/container-server-launch.sh"]
 
