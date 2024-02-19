@@ -4,5 +4,6 @@
 /usr/sbin/service memcached start
 
 # set up storage
-su swift -c "/usr/local/bin/swift-init start object-server, object-replicator, object-auditor, object-updater"
+#su swift -c "/usr/local/bin/swift-init start object-server, object-replicator, object-auditor, object-updater"
+/usr/local/bin/swift-init start object-server object-replicator object-auditor object-updater
 /usr/local/bin/supervisord -n -c /etc/supervisord.conf
